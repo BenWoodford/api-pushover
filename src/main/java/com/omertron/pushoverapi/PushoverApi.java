@@ -57,6 +57,8 @@ public class PushoverApi {
      * The generated authentication string based on the tokens and device
      */
     private String authenticationTokens;
+    
+    public boolean isDebug = false;
 
     /*
      * Constants
@@ -296,6 +298,9 @@ public class PushoverApi {
      */
     private String sendToPushover(String message) throws IOException {
         URL pushoverUrl = new URL(PUSHOVER_URL);
+        
+        if(isDebug)
+        	System.out.println("Pushing with URL: " + message);
 
         HttpsURLConnection connection = (HttpsURLConnection) pushoverUrl.openConnection();
         connection.setDoOutput(true);
